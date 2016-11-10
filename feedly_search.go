@@ -34,6 +34,7 @@ type response struct {
 func Process(query, locale string, number int) {
 	resp, err := http.Get(constructURL(query, locale, number))
 	if err != nil {
+		resp.Body.Close()
 		log.Fatalln(err)
 	}
 	defer resp.Body.Close()
